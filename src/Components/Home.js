@@ -52,7 +52,7 @@ return (
 <section className='questans Cbrady Cflex Cai-c Cf-dir Cmar-t'  >
 
 <div className={isDark? 'question Cw100p Cpad Cbgc001 Cbrady Cmar-by' : 'question Cw100p Cpad Cbrady Cbgc005 Cmar-by'} >
-<h2> Channel Creator  Lorem ipsum dolor sit amet.</h2>
+<h2> Channel lorem Creator  Lorem ipsum dolor sit amet.</h2>
 <div className="Cflex Cjc-sb" >
      
   <ButtonBase>
