@@ -19,7 +19,7 @@ else return (
 <Identifier/>
 <h3>Question Will Show Up Here</h3>
 
-<textarea className="Cw100p Cmar-t" name="" id="" cols="30" rows="10">
+<textarea autoFocus className={isDark ? "Cw100p Cmar-t Ccw" : "Cw100p Cmar-t "  } name="" id="" cols="30" rows="10">
 
 </textarea>
 

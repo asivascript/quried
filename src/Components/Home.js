@@ -1,14 +1,17 @@
 import "../Stylesheets/Home.css"
-import Identifier from "./Identifier";
 import Answer from "./Answer";
 import Question from "./Question";
 import Answerbox from "./Answerbox";
-import { useContext } from 'react'
+import Searchbox from "./Accessories/Searchbox";
+import Questionbox from "./Questionbox";
+import { useContext ,useState } from 'react'
 import { OCcontextval } from './Context/OCcontext'
-import {Avatar,ButtonBase} from '@mui/material';
-import {SearchOutlined,Person,DarkMode,ArrowUpward,ArrowDownward,LightMode} from "@mui/icons-material"
-import {DMcontextval} from "./Context/DMcontext";
+import { DMcontextval } from "./Context/DMcontext";
+import { Avatar } from '@mui/material';
+import { Link } from 'react-router-dom'
+import { SearchOutlined,Person,DarkMode,LightMode,StarOutlineOutlined ,QueryBuilder } from "@mui/icons-material"
 const Home = () => {
+const [querytype, setquerytype] = useState("popular")
 const {answerOC,setanswerOC,questionOC,setquestionOC} = useContext(OCcontextval)
 const {isDark,setisDark} = useContext(DMcontextval)
 return (
@@ -16,9 +19,6 @@ return (
 
 <section className="navbar Cpad Cflex Cjc-sb " >
 <button className="btnmidedit" onClick={() => setquestionOC(prev => !prev)} >Ask Question</button>
-<Avatar style = {{backgroundColor : 'rgb(35, 34, 36)'}} >
-    <SearchOutlined/>
-</Avatar>
 
 <div onClick={() => setisDark(prev => !prev) } >
 <Avatar style = {{backgroundColor : 'rgb(35, 34, 36)'}} >
@@ -26,10 +26,11 @@ return (
 </Avatar>
 </div>
 
-
+<Link to = "/profile" >
 <Avatar style = {{backgroundColor : 'rgb(35, 34, 36)'}} >
     <Person/>
 </Avatar>
+</Link>
 
 </section>
 
@@ -51,25 +52,7 @@ return (
 
 <section className='questans Cbrady Cflex Cai-c Cf-dir Cmar-t'  >
 
-<div className={isDark? 'question Cw100p Cpad Cbgc001 Cbrady Cmar-by' : 'question Cw100p Cpad Cbrady Cbgc005 Cmar-by'} >
-<h2> Channel lorem Creator  Lorem ipsum dolor sit amet.</h2>
-<div className="Cflex Cjc-sb" >
-     
-  <ButtonBase>
-  <ArrowUpward style={{color: 'rgb(88, 255, 10)'}} />
-  <p>55</p>
-  </ButtonBase>
-
-  <ButtonBase>
-  <ArrowDownward style={{color: 'red'}} />
-  <p>55</p>
-  </ButtonBase>
-
-<button className="btnmidsave Cpad " onClick={()=> setanswerOC(prev => !prev)} > Add Answer</button>
-</div>
-
-</div>
-
+<Questionbox/>
 
 
 
@@ -99,73 +82,61 @@ return (
 
 
 <section className="faq Cmar-lx Cmar-t " >
-<h1 className="Cmar-ly" >Most Popular Question</h1>
+<div className="Cflex Cjc-sb Cai-c" >
+{
 
+querytype ==='search' && <Searchbox/>
 
-{/* each faqs */}
+}
+{
 
+querytype ==='recent' && <h1 className="Cmar-ly" >Most Recent Questions</h1>
 
-<div className={isDark ? 'question Cw100p Cpad Cbgc001 Cbrady Cmar-by Cmar-ty' : 'question Cw100p Cpad Cbgc005 Cbrady Cmar-by Cmar-ty'} >
-<h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, sequi.</h3>
-<div className="Cflex Cjc-sb" >
-     
-<ButtonBase>
-<ArrowUpward style={{color: 'rgb(88, 255, 10)'}} />
-<p>55</p>
-</ButtonBase>
+}
+{
 
-<ButtonBase>
-<ArrowDownward style={{color: 'red'}} />
-<p>55</p>
-</ButtonBase>
+querytype ==='popular' && <h1 className="Cmar-ly" >Most Popular Questions</h1>
 
-<button className="btnmidsave Cpad " onClick={()=> setanswerOC(prev => !prev)} > Add Answer</button>
-</div>
-</div>
+}
 
+<section className="Cflex" >
 
-
-{/* each faqs */}
-
-
-<div className={isDark ? 'question Cw100p Cpad Cbgc001 Cc-p Cbrady Cmar-by Cmar-ty' : 'question Cw100p Cpad Cc-p Cbgc005 Cbrady Cmar-by Cmar-ty'} >
-<h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, sequi.</h3>
-<div className="Cflex Cjc-sb" >
-     
-<ButtonBase>
-<ArrowUpward style={{color: 'rgb(88, 255, 10)'}} />
-<p>55</p>
-</ButtonBase>
-
-<ButtonBase>
-<ArrowDownward style={{color: 'red'}} />
-<p>55</p>
-</ButtonBase>
-
-<button className="btnmidsave Cpad " onClick={()=> setanswerOC(prev => !prev)} > Add Answer</button>
-</div>
+<div onClick={()=> setquerytype("search")} className='Cmar-ly' >
+<Avatar style = {{height : '35px',width  : '35px',backgroundColor : 'rgb(35, 34, 36)'}} >
+    <SearchOutlined/>
+</Avatar>
 </div>
 
-{/* each faqs */}
 
-
-<div className={isDark ? 'question Cw100p Cpad Cbgc001 Cbrady Cmar-by Cmar-ty' : 'question Cw100p Cpad Cbgc005 Cbrady Cmar-by Cmar-ty'} >
-<h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, sequi.</h3>
-<div className="Cflex Cjc-sb" >
-     
-<ButtonBase>
-<ArrowUpward style={{color: 'rgb(88, 255, 10)'}} />
-<p>55</p>
-</ButtonBase>
-
-<ButtonBase>
-<ArrowDownward style={{color: 'red'}} />
-<p>55</p>
-</ButtonBase>
-
-<button className="btnmidsave Cpad " onClick={()=> setanswerOC(prev => !prev)} > Add Answer</button>
+<div onClick={()=> setquerytype("popular")}className='Cmar-ly' >
+<Avatar style = {{height : '35px',width  : '35px',backgroundColor : 'rgb(35, 34, 36)'}} >
+    <StarOutlineOutlined/>
+</Avatar>
 </div>
+
+
+<div onClick={()=> setquerytype("recent")}className='Cmar-ly' >
+<Avatar style = {{height : '35px',width  : '35px',backgroundColor : 'rgb(35, 34, 36)'}} >
+    <QueryBuilder/>
+</Avatar>
 </div>
+
+
+</section>
+
+</div>
+
+
+
+
+
+<Questionbox/>
+<Questionbox/>
+<Questionbox/>
+<Questionbox/>
+<Questionbox/>
+<Questionbox/>
+<Questionbox/>
 
 
 

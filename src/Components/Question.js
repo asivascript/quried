@@ -19,7 +19,7 @@ const Question = () => {
     <h4 className="Cta-c" >Ask Your Question </h4>
     <Identifier/>
 
-    <textarea className="Cw100p Cmar-t" name="" id="" cols="30" rows="10"></textarea>
+    <textarea autoFocus className={isDark ? "Cw100p Cmar-t Ccw" : "Cw100p Cmar-t "  } name="" id="" cols="30" rows="10"></textarea>
     
     <button className="btnmidcancel " onClick={()=> setquestionOC(prev => !prev)} >Cancel</button>
     

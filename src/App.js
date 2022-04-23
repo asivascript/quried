@@ -11,6 +11,9 @@ import PrivateRoute from "./Components/Routercomponent/PrivateRoute"
 import OCcontext from './Components/Context/OCcontext';
 import DMcontext from './Components/Context/DMcontext';
 import Home from './Components/Home'
+import Login from './Components/Login';
+import Search from './Components/Search';
+import Profile from './Components/Profile'
 
 function App() {
 return (
@@ -21,19 +24,27 @@ return (
 <Router>
 
 <Routes>
-<Route exact path="/login" element = {<h1>login</h1>} />
+<Route exact path="/auth" element = {<Login/>} />
   
 
 <Route exact path="/" element = {
-    <PrivateRoute>
+<PrivateRoute>
 <Home/>
 </PrivateRoute>
 }/>
 
+
+<Route exact path="/search" element = {
+<PrivateRoute>
+<Search/>
+</PrivateRoute>
+}/>
+
+
     
 <Route exact path="/profile" element = {
-    <PrivateRoute>
-<h1>Profile</h1>
+<PrivateRoute>
+<Profile/>
 </PrivateRoute>
 }/>
 
